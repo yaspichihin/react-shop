@@ -1,13 +1,9 @@
+import { useContext } from "react";
+import { ShopContext } from "../context";
 import { CartItem } from "./CartItem";
 
-export function CartList(props) {
-    const {
-        order = [],
-        toggleCartDisplay = Function.prototype,
-        delFromCart = Function.prototype,
-        incQuantity = Function.prototype,
-        decQuantity = Function.prototype,
-    } = props;
+export function CartList() {
+    const { order, toggleCartDisplay } = useContext(ShopContext);
 
     return (
         <ul className="collection cart-list">
@@ -23,15 +19,7 @@ export function CartList(props) {
                 </span>
             </li>
             {order.length ? (
-                order.map((order) => (
-                    <CartItem
-                        key={order.id}
-                        delFromCart={delFromCart}
-                        incQuantity={incQuantity}
-                        decQuantity={decQuantity}
-                        {...order}
-                    />
-                ))
+                order.map((order) => <CartItem key={order.id} {...order} />)
             ) : (
                 <li className="collection-item">Корзина пуста</li>
             )}

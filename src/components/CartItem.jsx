@@ -1,13 +1,10 @@
+import { useContext } from "react";
+import { ShopContext } from "../context";
+
 export function CartItem(props) {
-    const {
-        id,
-        name,
-        price,
-        quantity,
-        delFromCart = Function.prototype,
-        incQuantity = Function.prototype,
-        decQuantity = Function.prototype,
-    } = props;
+    const { id, name, price, quantity } = props;
+
+    const { delFromCart, incQuantity, decQuantity } = useContext(ShopContext);
 
     return (
         <li className="collection-item">
@@ -30,9 +27,9 @@ export function CartItem(props) {
                     -
                 </button>
                 <span style={{ margin: "0 30px 0 30px" }}>{quantity}</span>
-                <buttoan onClick={() => incQuantity(id)} className="btn-small teal">
+                <button onClick={() => incQuantity(id)} className="btn-small teal">
                     +
-                </buttoan>
+                </button>
             </div>
         </li>
     );
